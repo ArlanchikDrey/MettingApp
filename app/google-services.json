@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "313781180557",
+    "project_id": "meetingapp-a0c25",
+    "storage_bucket": "meetingapp-a0c25.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:313781180557:android:86114acb162d753d1a2ac4",
+        "android_client_info": {
+          "package_name": "com.dev.meeting"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "313781180557-edf871ip8htb52e4eljc6m3i3kp70fb7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQFIuyPsvu1kwehQCDBirH7PuF_yvLLE0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "313781180557-edf871ip8htb52e4eljc6m3i3kp70fb7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
