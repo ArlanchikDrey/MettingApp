@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with this program.  If not, see https://www.gnu.org/licenses
+  -->
+
+<layout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto">
+
+	<data>
+		<variable name="viewModel"
+			type="com.dev.meeting.ui.profile.RemoteRepoViewModel"
+			/>
+
+	</data>
+
+	<androidx.coordinatorlayout.widget.CoordinatorLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:background="@color/colorBackground"
+		>
+
+		<com.google.android.material.appbar.AppBarLayout
+			android:id="@+id/appBarProfile"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:theme="@style/AppTheme.AppBarOverlay"
+			app:paddingTopSystemWindowInsets="@{true}"
+			>
+
+			<com.google.android.material.appbar.CollapsingToolbarLayout
+				android:id="@+id/collapseBarProfile"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				app:contentScrim="?colorSurface"
+
+				app:collapsedTitleTextAppearance="?textAppearanceHeadline6"
+				app:expandedTitleTextAppearance="?textAppearanceHeadline4"
+
+				app:layout_scrollFlags="scroll|exitUntilCollapsed"
+				app:title="@{viewModel.retrievedUserItem.baseUserInfo.name, default = @string/default_name}"
+				>
+
+
+				<androidx.viewpager2.widget.ViewPager2
+					android:id="@+id/viewPagerProfilePhotos"
+					android:layout_width="match_parent"
+					android:layout_height="500dp"
+					/>
+
+				<com.google.android.material.tabs.TabLayout
+					android:id="@+id/tlDotsIndicatorProfile"
+					android:layout_width="match_parent"
+					android:layout_height="10dp"
+					android:layout_gravity="bottom"
+					android:layout_marginBottom="8dp"
+					android:background="@null"
+
+					app:tabBackground="@drawable/tab_dot_unselected_state"
+					app:tabIndicator="@drawable/tab_dot_selection_indicator"
+					app:tabIndicatorColor="@color/gradient1"
+					app:tabIndicatorGravity="center"
+					app:tabGravity="center"
+					app:tabMaxWidth="12dp"
+					/>
+
+				<com.google.android.material.appbar.MaterialToolbar
+					android:id="@+id/toolbarProfile"
+					android:layout_width="match_parent"
+					android:layout_height="?actionBarSize"
+					app:layout_collapseMode="pin"
+					app:menu="@menu/profile_view_menu"
+					app:navigationIcon="@drawable/ic_arrow_back_24dp"
+					app:popupTheme="@style/MyMenuPopupStyle"
+					/>
+
+			</com.google.android.material.appbar.CollapsingToolbarLayout>
+
+		</com.google.android.material.appbar.AppBarLayout>
+
+		<androidx.core.widget.NestedScrollView
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:fillViewport="true"
+			android:overScrollMode="never"
+			app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:orientation="vertical"
+				>
+
+				<com.google.android.material.textview.MaterialTextView
+					android:id="@+id/tvProfileAboutHeader"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginHorizontal="8dp"
+					android:padding="16dp"
+					
+					android:text="@string/profile_about_header_text"
+					android:textAppearance="?textAppearanceHeadline5"
+
+					app:layout_constraintTop_toTopOf="parent"
+					app:layout_constraintBottom_toTopOf="@id/tvProfileAboutText"
+					app:layout_constraintStart_toStartOf="parent"
+					app:layout_constraintEnd_toEndOf="parent"
+					/>
+
+				<com.google.android.material.textview.MaterialTextView
+					android:id="@+id/tvProfileAboutText"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginHorizontal="8dp"
+
+					android:text="@{viewModel.retrievedUserItem.aboutText}"
+
+					app:layout_constraintTop_toBottomOf="@id/tvProfileAboutHeader"
+					app:layout_constraintBottom_toBottomOf="parent"
+					app:layout_constraintStart_toStartOf="parent"
+					app:layout_constraintEnd_toEndOf="parent"
+					/>
+
+			</LinearLayout>
+
+		</androidx.core.widget.NestedScrollView>
+
+		<com.google.android.material.floatingactionbutton.FloatingActionButton
+			android:id="@+id/fabProfileSendMessage"
+			android:layout_height="wrap_content"
+			android:layout_width="wrap_content"
+			android:layout_margin="16dp"
+			android:src="@drawable/ic_profile_send_message_24dp"
+			android:visibility="gone"
+
+			app:layout_anchor="@id/appBarProfile"
+			app:layout_anchorGravity="bottom|right|end"
+			/>
+
+	</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

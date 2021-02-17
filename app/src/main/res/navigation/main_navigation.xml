@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with this program.  If not, see https://www.gnu.org/licenses
+  -->
+
+<navigation android:id="@+id/mainNavigation"
+	app:startDestination="@id/cardsFragment"
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools">
+
+	<action android:id="@+id/action_open_pairsFragment"
+		app:destination="@id/pairsFragment"
+		
+		app:enterAnim="@anim/nav_default_enter_anim"
+		app:exitAnim="@anim/nav_default_exit_anim"
+		app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+		app:popExitAnim="@anim/nav_default_pop_exit_anim"
+		/>
+
+	<action android:id="@+id/action_open_cardsFragment"
+		app:destination="@id/cardsFragment"
+		
+		app:enterAnim="@anim/nav_default_enter_anim"
+		app:exitAnim="@anim/nav_default_exit_anim"
+		app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+		app:popExitAnim="@anim/nav_default_pop_exit_anim"
+		/>
+
+	<action android:id="@+id/action_open_conversationsFragment"
+		app:destination="@id/conversationsFragment"
+		
+		app:enterAnim="@anim/nav_default_enter_anim"
+		app:exitAnim="@anim/nav_default_exit_anim"
+		app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+		app:popExitAnim="@anim/nav_default_pop_exit_anim"
+		/>
+
+	<action android:id="@+id/action_open_settingsFragment"
+		app:destination="@id/settingsFragment"
+		
+		app:enterAnim="@anim/nav_default_enter_anim"
+		app:exitAnim="@anim/nav_default_exit_anim"
+		app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+		app:popExitAnim="@anim/nav_default_pop_exit_anim"
+		/>
+
+	<!-- main pairs fragment-->
+	<fragment android:id="@+id/pairsFragment"
+		android:name="com.dev.meeting.ui.pairs.view.PairsFragment"
+		tools:layout="@layout/fragment_pairs" >
+
+		<action android:id="@+id/action_pairs_to_profileFragment"
+			app:destination="@id/profileFragment"
+			
+			app:enterAnim="@anim/enter_from_top"
+			app:exitAnim="@anim/exit_to_bottom"
+			app:popEnterAnim="@anim/enter_from_bottom"
+			app:popExitAnim="@anim/exit_to_top" >
+
+			<argument
+				android:defaultValue="true"
+				android:name="FAB_VISIBLE" />
+
+			<argument
+				android:defaultValue="true"
+				android:name="IS_MATCHED" />
+
+		</action>
+
+	</fragment>
+
+	<!-- main cards fragment-->
+	<fragment android:id="@+id/cardsFragment"
+		android:name="com.dev.meeting.ui.cards.view.CardsFragment"
+		android:label="Cards"
+		tools:layout="@layout/fragment_cards" >
+
+		<action android:id="@+id/action_cards_to_profileFragment"
+			app:destination="@id/profileFragment"
+			
+			app:enterAnim="@anim/enter_from_top"
+			app:exitAnim="@anim/exit_to_bottom"
+			app:popEnterAnim="@anim/enter_from_bottom"
+			app:popExitAnim="@anim/exit_to_top" >
+
+			<!-- @argument to show is fab enabled to open chat? -->
+			<argument
+				android:defaultValue="false"
+				android:name="FAB_VISIBLE" />
+
+		</action>
+
+	</fragment>
+
+	<!-- main conversations fragment-->
+	<fragment android:id="@+id/conversationsFragment"
+		android:name="com.dev.meeting.ui.conversations.view.ConversationsFragment"
+		tools:layout="@layout/fragment_conversations" >
+
+		<action android:id="@+id/action_conversations_to_chatFragment"
+			app:destination="@id/chatFragment"
+			
+			app:enterAnim="@anim/enter_from_top"
+			app:exitAnim="@anim/exit_to_bottom"
+			app:popEnterAnim="@anim/enter_from_bottom"
+			app:popExitAnim="@anim/exit_to_top"/>
+
+	</fragment>
+
+	<!-- main settings fragment-->
+	<fragment android:id="@+id/settingsFragment"
+		android:label="Settings"
+		android:name="com.dev.meeting.ui.settings.SettingsFragment"
+		tools:layout="@layout/fragment_settings" >
+
+		<action android:id="@+id/action_settings_to_settingsEditInfoFragment"
+			app:destination="@id/settingsEditInfoFragment"
+			
+			app:enterAnim="@anim/enter_from_right"
+			app:exitAnim="@anim/exit_to_left"
+			app:popEnterAnim="@anim/enter_from_left"
+			app:popExitAnim="@anim/exit_to_right"/>
+
+	</fragment>
+
+	<!-- secondary settings edit fragment -->
+	<fragment android:id="@+id/settingsEditInfoFragment"
+		android:label="Edit"
+		android:name="com.dev.meeting.ui.settings.edit.SettingsEditInfoFragment"
+		tools:layout="@layout/fragment_settings_edit_info" />
+
+	<!-- secondary profile view fragment-->
+	<fragment android:id="@+id/profileFragment"
+		android:name="com.dev.meeting.ui.profile.view.ProfileFragment"
+		tools:layout="@layout/fragment_profile">
+
+		<argument
+			android:name="FAB_VISIBLE"
+			app:argType="boolean"
+			android:defaultValue="false" />
+
+		<argument
+			android:name="IS_MATCHED"
+			app:argType="boolean"
+			android:defaultValue="false" />
+
+		<action android:id="@+id/action_profile_to_chatFragment"
+			app:destination="@id/chatFragment"
+			
+			app:enterAnim="@anim/enter_from_top"
+			app:exitAnim="@anim/exit_to_bottom"
+			app:popEnterAnim="@anim/enter_from_bottom"
+			app:popExitAnim="@anim/exit_to_top" />
+
+	</fragment>
+
+	<!-- secondary conversations chat fragment-->
+	<fragment android:id="@+id/chatFragment"
+		android:name="com.dev.meeting.ui.chat.view.ChatFragment"
+		tools:layout="@layout/fragment_chat">
+
+		<action android:id="@+id/action_chat_to_profileFragment"
+			app:destination="@id/profileFragment"
+			
+			app:enterAnim="@anim/enter_from_top"
+			app:exitAnim="@anim/exit_to_bottom"
+			app:popEnterAnim="@anim/enter_from_bottom"
+			app:popExitAnim="@anim/exit_to_top" >
+
+			<argument
+				android:defaultValue="true"
+				android:name="IS_MATCHED" />
+
+			<argument
+				android:defaultValue="false"
+				android:name="FAB_VISIBLE" />
+
+		</action>
+		
+		<action android:id="@+id/action_chat_to_conversationsFragment"
+			app:destination="@id/conversationsFragment"
+			app:popUpToInclusive="true"
+			
+			app:enterAnim="@anim/enter_from_top"
+			app:exitAnim="@anim/exit_to_bottom"
+			app:popEnterAnim="@anim/enter_from_bottom"
+			app:popExitAnim="@anim/exit_to_top" />
+
+		<argument
+			android:name="CONVERSATION_ID"
+			app:argType="string" />
+		
+	</fragment>
+
+</navigation>

@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with this program.  If not, see https://www.gnu.org/licenses
+  -->
+
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools">
+
+	<data>
+
+		<variable
+			name="viewModel"
+			type="com.dev.meeting.ui.chat.ChatViewModel" />
+
+	</data>
+
+	<androidx.constraintlayout.widget.ConstraintLayout
+		android:id="@+id/containerChat"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:background="@color/colorBackground"
+		app:paddingBottomSystemWindowInsets="@{true}"
+		>
+
+		<com.google.android.material.appbar.MaterialToolbar
+			android:id="@+id/toolbarChat"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+
+			app:menu="@menu/chat_menu"
+			app:navigationIcon="@drawable/ic_arrow_back_24dp"
+
+			app:paddingTopSystemWindowInsets="@{true}"
+			
+			style="@style/ThemeOverlay.MaterialComponents.Toolbar.Surface"
+
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent"
+			app:layout_constraintBottom_toTopOf="@id/rvMessageList"
+			>
+
+			<androidx.constraintlayout.widget.ConstraintLayout
+				android:id="@+id/toolbarInnerContainer"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent">
+
+				<com.google.android.material.textview.MaterialTextView
+					android:id="@+id/toolbarChatTitle"
+					android:layout_width="wrap_content"
+					android:layout_height="0dp"
+					android:gravity="center"
+
+					android:maxLength="16"
+					android:ellipsize="end"
+					android:lines="1"
+					android:maxLines="1"
+					android:singleLine="true"
+
+					android:text='@{viewModel.partnerName}'
+					android:textAppearance="?textAppearanceHeadline6"
+					
+					app:layout_constraintStart_toStartOf="parent"
+					app:layout_constraintTop_toTopOf="parent"
+					app:layout_constraintBottom_toBottomOf="parent"
+					/>
+
+				<com.google.android.material.imageview.ShapeableImageView
+					android:id="@+id/toolbarChatPartnerOnlineIndicator"
+					android:layout_width="8dp"
+					android:layout_height="8dp"
+					android:layout_marginStart="8dp"
+
+					android:src="@color/lolite"
+
+					app:shapeAppearanceOverlay="@style/MyAppShapeAppearanceOverlay.Circle"
+					app:invisibleIf="@{!viewModel.isPartnerOnline}"
+
+					app:layout_constraintHorizontal_chainStyle="spread_inside"
+					app:layout_constraintEnd_toStartOf="@id/toolbarChatPartnerPhoto"
+					app:layout_constraintStart_toEndOf="@id/toolbarChatTitle"
+					app:layout_constraintTop_toTopOf="parent"
+					app:layout_constraintBottom_toBottomOf="parent"
+					/>
+
+				<com.google.android.material.imageview.ShapeableImageView
+					android:id="@+id/toolbarChatPartnerPhoto"
+					android:layout_width="36dp"
+					android:layout_height="36dp"
+					android:layout_margin="4dp"
+					android:scaleType="centerCrop"
+
+					app:bindImageUrl="@{viewModel.partnerPhoto}"
+
+					app:shapeAppearanceOverlay="@style/MyAppShapeAppearanceOverlay.Circle"
+					
+					app:layout_constraintHorizontal_chainStyle="spread_inside"
+					app:layout_constraintStart_toEndOf="@id/toolbarChatPartnerOnlineIndicator"
+					app:layout_constraintEnd_toEndOf="parent"
+					app:layout_constraintTop_toTopOf="parent"
+					app:layout_constraintBottom_toBottomOf="parent"
+					/>
+
+			</androidx.constraintlayout.widget.ConstraintLayout>
+
+		</com.google.android.material.appbar.MaterialToolbar>
+
+		<androidx.recyclerview.widget.RecyclerView android:id="@+id/rvMessageList"
+			android:layout_height="0dp"
+			android:layout_width="0dp"
+			android:focusable="true"
+			android:overScrollMode="never"
+			android:scrollbars="none"
+			
+			tools:itemCount="2"
+			tools:listitem="@layout/fragment_chat_item_right"
+
+			app:invisibleIf="@{viewModel.showLoading}"
+
+			app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintTop_toBottomOf="@id/toolbarChat"
+			app:layout_constraintBottom_toTopOf="@id/edTextMessageInput"
+			
+			/>
+
+		<View android:id="@+id/messageInputContainerBackground"
+			android:layout_width="0dp"
+			android:layout_height="0dp"
+			android:background="?colorSurface"
+			android:focusable="false"
+			android:clickable="false"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintTop_toBottomOf="@id/rvMessageList"/>
+
+		<com.google.android.material.button.MaterialButton
+			android:id="@+id/btnSendAttachment"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:padding="16dp"
+			
+			app:icon="@drawable/ic_chat_attachment_24dp"
+			app:iconTint="@color/white_50"
+
+			style="@style/MyButtonIconOnly.Text"
+
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintTop_toBottomOf="@id/rvMessageList"
+			app:layout_constraintEnd_toStartOf="@id/edTextMessageInput"
+			/>
+
+		<com.google.android.material.textfield.TextInputEditText android:id="@+id/edTextMessageInput"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:background="@null"
+			android:padding="16dp"
+
+			android:imeOptions="actionSend"
+			android:inputType="text|textMultiLine"
+			android:hint="@string/fragment_chat_ed_hint"
+			android:maxLength="200"
+
+			app:layout_constraintTop_toBottomOf="@id/rvMessageList"
+			app:layout_constraintStart_toEndOf="@id/btnSendAttachment"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintEnd_toStartOf="@id/btnSendMessage"
+			/>
+
+		<com.google.android.material.button.MaterialButton
+			android:id="@+id/btnSendMessage"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:padding="16dp"
+
+			app:icon="@drawable/ic_chat_send_24dp"
+			app:iconTint="@color/chat_send_button_icon_tint"
+			
+			style="@style/MyButtonIconOnly.Text"
+
+			app:layout_constraintStart_toEndOf="@id/edTextMessageInput"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintTop_toBottomOf="@id/rvMessageList"
+			/>
+
+		<include android:id="@+id/loadingViewChat"
+			layout="@layout/loading"
+			android:layout_width="0dp"
+			android:layout_height="0dp"
+			
+			app:invisibleIf="@{!viewModel.showLoading}"
+			
+			app:layout_constraintTop_toTopOf="parent"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			/>
+
+		<com.google.android.material.textview.MaterialTextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:gravity="center"
+
+			android:text="@string/fragment_chat_no_messages_explanation"
+			android:textAppearance="?textAppearanceHeadline5"
+			
+			app:invisibleIf='@{!viewModel.chatIsEmpty}'
+
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent"
+			app:layout_constraintBottom_toBottomOf="parent"
+			/>
+
+	</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

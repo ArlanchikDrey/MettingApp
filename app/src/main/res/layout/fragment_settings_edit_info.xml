@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with this program.  If not, see https://www.gnu.org/licenses
+  -->
+
+
+<layout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools">
+
+
+	<androidx.core.widget.NestedScrollView
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:clipToPadding="false"
+		android:fillViewport="true"
+		android:overScrollMode="never"
+		>
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:background="@color/colorBackground"
+			android:orientation="vertical"
+
+			app:paddingBottomSystemWindowInsets="@{true}"
+			android:animateLayoutChanges="true">
+
+			<androidx.recyclerview.widget.RecyclerView android:id="@+id/rvSettingsEditPhotos"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:clipToPadding="false"
+				android:orientation="vertical"
+				android:overScrollMode="never"
+
+				app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+				app:spanCount="2"
+
+				app:paddingTopSystemWindowInsets="@{true}"
+
+				tools:listitem="@layout/item_settings_edit_info_photo"
+				tools:itemCount="2"
+				/>
+
+			<!--name-->
+			<com.google.android.material.textfield.TextInputLayout
+				android:id="@+id/layoutSettingsEditName"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="8dp"
+				android:layout_marginHorizontal="16dp"
+
+				app:counterMaxLength="30"
+				app:counterEnabled="true"
+				
+				android:hint="@string/reg_hint_name"
+
+				app:errorEnabled="true"
+				
+				style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+				<com.google.android.material.textfield.TextInputEditText
+					android:id="@+id/edSettingsEditName"
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:background="@null"
+
+					android:gravity="center"
+					android:maxLength="30"
+					android:maxLines="1"
+					android:imeOptions="actionDone"
+					android:inputType="textPersonName"
+
+					android:text="@string/default_name"
+					app:hideKeyboardOnInputDone="@{true}"
+					/>
+
+			</com.google.android.material.textfield.TextInputLayout>
+
+			<com.google.android.material.button.MaterialButtonToggleGroup
+				android:id="@+id/toggleButtonSettingsEditGender"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginHorizontal="16dp"
+				android:gravity="center"
+
+				app:selectionRequired="true"
+				app:singleSelection="true"
+				app:checkedButton="@id/btnSettingsEditGenderMale"
+				>
+				<com.google.android.material.button.MaterialButton
+					android:id="@+id/btnSettingsEditGenderMale"
+					android:layout_width="0dp"
+					android:layout_height="wrap_content"
+					android:layout_weight="1"
+					android:padding="16dp"
+
+					android:text="@string/genderMale"
+					android:textAllCaps="false"
+					style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+					/>
+
+				<com.google.android.material.button.MaterialButton
+					android:id="@+id/btnSettingsEditGenderFemale"
+					android:layout_width="0dp"
+					android:layout_height="wrap_content"
+					android:layout_weight="1"
+					android:padding="16dp"
+
+					android:text="@string/genderFemale"
+					android:textAllCaps="false"
+					style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+					/>
+
+			</com.google.android.material.button.MaterialButtonToggleGroup>
+
+			<!--age-->
+			<com.google.android.material.slider.Slider android:id="@+id/sliderSettingsEditAge"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginHorizontal="16dp"
+				android:layout_marginTop="16dp"
+				
+				android:stepSize="1"
+				android:valueFrom="18"
+				android:valueTo="100"
+				
+				app:trackColorActive="?colorSecondary"
+				
+				app:thumbColor="?colorSecondary"
+				app:thumbRadius="16dp"
+
+				/>
+
+			<com.google.android.material.textview.MaterialTextView
+				android:id="@+id/tvSettingsEditAge"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:labelFor="@id/sliderSettingsEditAge"
+
+				android:gravity="center"
+				android:text=""
+				android:textAppearance="?textAppearanceHeadline5"
+				/>
+
+			<!-- description -->
+			<com.google.android.material.textfield.TextInputLayout
+				android:id="@+id/layoutSettingsEditDescription"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginHorizontal="16dp"
+				android:layout_marginTop="8dp"
+
+				app:counterMaxLength="200"
+				app:counterEnabled="true"
+				
+				android:hint="@string/profile_about_header_text"
+
+				app:errorEnabled="false"
+				style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+				>
+
+				<com.google.android.material.textfield.TextInputEditText
+					android:id="@+id/edSettingsEditDescription"
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:background="@null"
+
+					android:imeOptions="actionDone"
+					android:inputType="text|textMultiLine"
+					
+					android:maxLength="200"
+					android:maxLines="10"
+
+					android:overScrollMode="never"
+					android:scrollbars="vertical"
+					android:scrollbarThumbVertical="@color/white"
+
+					android:textAlignment="textStart"
+					android:textColor="@color/white"
+					android:textCursorDrawable="@color/lolite"
+					app:hideKeyboardOnInputDone="@{true}"
+					/>
+
+
+			</com.google.android.material.textfield.TextInputLayout>
+
+			<!--save-->
+			<com.google.android.material.button.MaterialButton
+				android:id="@+id/btnSettingsEditSave"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="16dp"
+				android:layout_marginHorizontal="16dp"
+
+				android:padding="16dp"
+
+				android:text="@string/btn_settings_edit_save_text"
+				android:textColor="?colorOnBackground"
+				app:backgroundTint="?colorPrimaryDark"
+				/>
+
+			<!--delete-->
+			<com.google.android.material.button.MaterialButton
+				android:id="@+id/btnSettingsEditDelete"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginHorizontal="16dp"
+				android:layout_marginTop="500dp"
+				android:padding="16dp"
+
+				android:text="@string/btn_settings_edit_delete_my_account_text"
+
+				app:backgroundTint="@color/material_red_a700"
+
+				style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+				/>
+
+
+		</LinearLayout>
+
+	</androidx.core.widget.NestedScrollView>
+</layout>

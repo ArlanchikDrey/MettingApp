@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with this program.  If not, see https://www.gnu.org/licenses
+  -->
+
+<resources>
+
+	<color name="colorPrimary">#9191E9</color>
+	<color name="colorPrimaryLight">#BD90E8</color>
+	<color name="colorPrimaryDark">#0404DF</color>
+	<color name="colorOnPrimary">#000000</color>
+
+	<color name="colorSecondary">#FF6D00</color>
+	<color name="colorSecondaryLight">#FEAC5E</color>
+	<color name="colorSecondaryDark">#A44700</color>
+	<color name="colorOnSecondary">#ffffff</color>
+
+	<color name="colorError">#F50057</color>
+	<color name="colorOnError">#ffffff</color>
+
+	<color name="colorSurface">#121220</color>
+	<color name="colorOnSurface">#F5F5F5</color>
+	
+	<color name="colorBackground">#000000</color>
+	<color name="colorOnBackground">#F0F0F0</color>
+
+	<color name="myFacebookColor">#577cc1</color>
+
+	<color name="black">#000000</color>
+	<color name="black_50">#80000000</color>
+	<color name="white">#ffffff</color>
+
+	<color name="white_75">#BFFFFFFF</color>
+	<color name="white_50">#80FFFFFF</color>
+	<color name="white_25">#40FFFFFF</color>
+	<color name="white_10">#1AFFFFFF</color>
+	<color name="black_1">#031A1A25</color>
+	<color name="transparent">#00FFFFFF</color>
+
+	<color name="lolite">#6236FF</color>
+	<color name="lolite_25">#406236FF</color>
+	<color name="lolite_15">#266236FF</color>
+	<color name="amethyst">#B620E0</color>
+	<color name="amethyst_15">#26B620E0</color>
+
+	<color name="gradient1">#FEAC5E</color>
+	<color name="gradient2">#C779D0</color>
+	<color name="gradient3">#4BC0C8</color>
+
+
+
+	<color name="disabled_color">#424242</color>
+
+	<color name="material_green_a700">#00C853</color>
+	<color name="material_red_a700">#D50000</color>
+
+	<color name="material_orange_600">#FB8C00</color>
+
+	<color name="material_orange_a700">#FF6D00</color>
+	<color name="material_blue_400">#42A5F5</color>
+	<color name="material_blue_a700">#2962FF</color>
+
+	<color name="my_loading_green_oval">#1eef19</color>
+	<color name="my_loading_blue_oval">#192be9</color>
+	<color name="my_loading_red_oval">#fb1939</color>
+
+</resources>
