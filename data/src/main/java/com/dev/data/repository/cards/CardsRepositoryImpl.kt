@@ -71,21 +71,21 @@ class CardsRepositoryImpl @Inject constructor(
 	private fun cardsQuery(user: UserItem): List<Query> = with(user.location) {
 		//apply user ranges
 		agesRange = IntRange(user.preferences.ageRange.minAge, user.preferences.ageRange.maxAge)
-		
+
 		excludingIds.add(user.baseUserInfo.userId)
 		// Find cities within 50km of London
 		val center = GeoLocation(latitude, longitude)
 		val radiusInMeters = user.preferences.radius * 1000
-		
+
 		// Each item in 'bounds' represents a startAt/endAt pair. We have to issue
 		// a separate query for each pair. There can be up to 9 pairs of bounds
 		// depending on overlap, but in most cases there are 4.
 		val bounds: List<GeoQueryBounds> = GeoFireUtils.getGeoHashQueryBounds(center, radiusInMeters)
-		
+
 		//map calculated bounds for 'ready to execute' queries
 		bounds.map { bound ->
 			logDebug(TAG, "Query for ranges: ${bound.startHash} ${bound.endHash}")
-			
+
 			fs.collection(USERS_COLLECTION)
 				//people nearby
 				.orderBy(USERS_FILTER_LOCATION_HASH)
@@ -99,7 +99,7 @@ class CardsRepositoryImpl @Inject constructor(
 				)
 				.limit(20)
 		}
-		
+
 	}
 		
 		
