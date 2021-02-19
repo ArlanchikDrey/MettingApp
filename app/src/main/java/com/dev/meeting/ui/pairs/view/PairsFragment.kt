@@ -2,7 +2,9 @@
 package com.dev.meeting.ui.pairs.view
 
 import android.os.Bundle
+import android.os.Handler
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import com.dev.domain.conversations.ConversationItem
@@ -24,7 +26,7 @@ class PairsFragment: BaseFragment<PairsViewModel, FragmentPairsBinding>(
 ) {
 	
 	override val mViewModel: PairsViewModel by viewModels()
-	
+
 	private val mPairsAdapter = PairsAdapter().apply {
 		
 		setLoadNextListener { matchDate, page ->
@@ -77,4 +79,9 @@ class PairsFragment: BaseFragment<PairsViewModel, FragmentPairsBinding>(
 	private fun observePrevPairs() = mViewModel.prevPairs.observe(this, {
 		mPairsAdapter.insertPreviousData(it)
 	})
+
+	override fun onBackPressed() {
+		super.onBackPressed()
+		onCloseActivity()
+	}
 }

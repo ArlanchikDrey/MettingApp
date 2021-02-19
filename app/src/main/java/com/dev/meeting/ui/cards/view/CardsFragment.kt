@@ -2,7 +2,9 @@
 package com.dev.meeting.ui.cards.view
 
 import android.os.Bundle
+import android.os.Handler
 import android.view.View
+import android.widget.Toast
 import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.fragment.app.viewModels
 import com.google.android.material.tabs.TabLayout
@@ -25,7 +27,7 @@ class CardsFragment: BaseFragment<CardsViewModel, FragmentCardsBinding>(
 	
 	private val mTopCardImagePagerAdapter = ImagePagerAdapter()
 	private val mBottomCardImagePagerAdapter = ImagePagerAdapter()
-	
+
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 		observeTopCard()
@@ -117,6 +119,10 @@ class CardsFragment: BaseFragment<CardsViewModel, FragmentCardsBinding>(
 	private fun showMatchDialog(userItem: UserItem) = MatchDialogFragment.newInstance(
 		userItem.baseUserInfo.name, userItem.baseUserInfo.mainPhotoUrl
 	).show(childFragmentManager, MatchDialogFragment::class.java.canonicalName)
-	
+
+	override fun onBackPressed() {
+		super.onBackPressed()
+		onCloseActivity()
+	}
 	
 }

@@ -2,6 +2,7 @@
 package com.dev.meeting.ui.common.base
 
 import android.os.Bundle
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,8 +16,10 @@ import androidx.lifecycle.ViewModel
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.dev.meeting.BR
+import com.dev.meeting.R
 import com.dev.meeting.ui.SharedViewModel
 import com.dev.meeting.utils.extensions.showErrorDialog
+import com.dev.meeting.utils.extensions.showToastText
 
 /**
  * Generic Fragment class
@@ -42,6 +45,8 @@ abstract class BaseFragment<T: ViewModel, Binding: ViewDataBinding>(
 	protected abstract val mViewModel: T?
 
 	private lateinit var callback: OnBackPressedCallback
+
+	private var exit = false
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
@@ -83,6 +88,18 @@ abstract class BaseFragment<T: ViewModel, Binding: ViewDataBinding>(
 	override fun onDestroy() {
 		_binding = null
 		super.onDestroy()
+	}
+
+	open fun onCloseActivity() {
+		if (exit) {
+			requireActivity().finish()
+		} else {
+			with(requireContext()){
+				showToastText(resources.getString(R.string.toast_text_exit))
+			}
+			exit = true
+			Handler().postDelayed({ exit = false }, 3 * 1000)
+		}
 	}
 	
 }

@@ -2,7 +2,9 @@
 package com.dev.meeting.ui.conversations.view
 
 import android.os.Bundle
+import android.os.Handler
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -110,5 +112,9 @@ class ConversationsFragment: BaseFragment<ConversationsViewModel, FragmentConver
 	private fun observePrevConversations() = mViewModel.prevConversations.observe(this, {
 		mConversationsAdapter.insertPreviousData(it)
 	})
-	
+
+	override fun onBackPressed() {
+		super.onBackPressed()
+		onCloseActivity()
+	}
 }

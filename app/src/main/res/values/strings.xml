@@ -110,6 +110,7 @@
 
 	<string name="text_empty_error">Field must not be empty</string>
 	
+	<string name="toast_text_exit">Press Back again to Exit</string>
 	<string name="toast_text_update_success">Successfully updated</string>
 	<string name="toast_text_delete_success">Successfully deleted</string>
 	<string name="toast_text_at_least_1_photo_required">At least one photo required.</string>

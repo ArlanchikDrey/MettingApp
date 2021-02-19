@@ -111,6 +111,7 @@
 
 	<string name="text_empty_error">Поле должно быть заполнено</string>
 	
+	<string name="toast_text_exit">Нажмите кнопку еще раз, чтобы выйти</string>
 	<string name="toast_text_update_success">Изменения сохранены</string>
 	<string name="toast_text_delete_success">Удалено</string>
 	<string name="toast_text_at_least_1_photo_required">Хотя бы 1 фотка должна быть</string>

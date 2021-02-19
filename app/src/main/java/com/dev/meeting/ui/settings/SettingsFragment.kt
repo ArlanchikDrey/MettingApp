@@ -6,15 +6,16 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
+import android.os.Handler
 import android.provider.MediaStore
 import android.text.format.DateFormat
 import android.view.Gravity
 import android.view.View
+import android.widget.Toast
 import androidx.core.content.FileProvider
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.SnapHelper
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.dev.meeting.BuildConfig
 import com.dev.meeting.R
 import com.dev.meeting.core.permissions.AppPermission
@@ -30,9 +31,11 @@ import com.dev.meeting.ui.common.custom.HorizontalCarouselLayoutManager
 import com.dev.meeting.ui.settings.edit.SettingsPreferencesBottomSheet
 import com.dev.meeting.utils.extensions.showToastText
 import com.dev.meeting.utils.extensions.visible
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
 import java.io.File
 import java.util.*
+
 
 /**
  * Shows your profile, allows to edit preferences or signOut
@@ -236,6 +239,11 @@ class SettingsFragment: BaseFragment<SettingsViewModel, FragmentSettingsBinding>
 
 			}
 		}
+	}
+
+	override fun onBackPressed() {
+		super.onBackPressed()
+		onCloseActivity()
 	}
 
 }
