@@ -80,17 +80,16 @@ class SettingsEditInfoFragment: BaseFragment<SettingsViewModel, FragmentSettings
 		}
 		
 		btnSettingsEditSave.setOnClickListener {
+			val item = MainActivity.currentUser!!.copy(
+				baseUserInfo = MainActivity.currentUser!!.baseUserInfo.copy(
+					name = newName ?: MainActivity.currentUser!!.baseUserInfo.name,
+					age = newAge ?: MainActivity.currentUser!!.baseUserInfo.age,
+					gender = newGender ?: MainActivity.currentUser!!.baseUserInfo.gender
+				),
+				aboutText = newDescription ?: MainActivity.currentUser!!.aboutText
+			)
 			sharedViewModel.updateUser(
-				MainActivity.currentUser!!.apply {
-					copy(
-						baseUserInfo = baseUserInfo.copy(
-							name = newName ?: baseUserInfo.name,
-							age = newAge ?: baseUserInfo.age,
-							gender = newGender ?: baseUserInfo.gender
-						),
-						aboutText = newDescription ?: aboutText
-					)
-				}
+				item
 			)
 		}
 		btnSettingsEditDelete.setOnClickListener { showDialogDeleteAttention() }
