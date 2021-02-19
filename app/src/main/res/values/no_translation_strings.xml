@@ -5,7 +5,7 @@
 	
 	<!--General-->
 	<string name="app_logo" translatable="false">App Logo</string>
-	<string name="app_name" translatable="false">MeetingApp</string>
+	<string name="app_name" translatable="false">TROLD</string>
 	<string name="privacy_policy_url" translatable="false">https://roove.flycricket.io/privacy.html</string>
 	
 	<!--Default strings-->
