@@ -89,10 +89,6 @@ class ChatAdapter(
 	private var loadPrevListener: ((MessageItem) -> Unit)? = null
 	fun setLoadPrevListener(listener: (MessageItem) -> Unit) { loadPrevListener = listener }
 
-	/* note: USE FOR -DEBUG ONLY */
-//	fun changeSenderName(name:String){
-//		userId = name
-//	}
 	
 	private var clickListener: ((View, Int, PhotoItem?) -> Unit)? = null
 	

@@ -79,15 +79,6 @@ class ChatViewModel @ViewModelInject constructor(
 		)
 	}
 
-	//fun observePartnerOnline(conversationId: String){
-	//	disposables.add(repo.observePartnerOnline(conversationId)
-    //        .observeOn(mainThread())
-    //        .subscribe(
-	//			{ if (isPartnerOnline.value != it) isPartnerOnline.value = it },
-	//			{ error.value = MyError(ErrorType.RECEIVING, it) }
-    //        )
-	//	)
-	//}
 
 	fun sendMessage(text: String, conversation: ConversationItem): MessageItem {
 		val message = MessageItem(

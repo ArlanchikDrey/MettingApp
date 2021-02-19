@@ -121,27 +121,6 @@ class ChatRepositoryImpl @Inject constructor(
 		emitter.setCancellable { listener.remove() }
 	}.subscribeOn(MySchedulers.io())
 
-	//override fun observePartnerOnline(conversationId: String): Observable<Boolean> =
-	//	ObservableCreate<Boolean> { emitter ->
-	//
-	//		val listener = currentUserDocRef
-	//			.collection(CONVERSATIONS_COLLECTION)
-	//			.document(conversationId)
-	//			.addSnapshotListener { snapshot, e ->
-	//				if (e != null) {
-	//					emitter.onError(e)
-	//					return@addSnapshotListener
-	//				}
-	//				if (snapshot != null && snapshot.exists()) {
-	//					snapshot.getBoolean(CONVERSATION_PARTNER_ONLINE_FIELD).let {
-	//						if (isPartnerOnline != it) isPartnerOnline = it
-	//						emitter.onNext(it)
-	//					}
-	//
-	//				}
-	//			}
-	//		emitter.setCancellable { listener.remove() }
-	//	}.subscribeOn(MySchedulers.io())
 
 	override fun sendMessage(messageItem: MessageItem, emptyChat: Boolean): Completable {
 		
@@ -164,9 +143,6 @@ class ChatRepositoryImpl @Inject constructor(
 			//update last message for both users
 			updateLastMessage(messageItem)
 		)
-			//.andThen {
-			//	updateUnreadMessagesCount(messageItem.conversationId)
-			//}
 	}
 	
 	private fun updateStartedStatus(message: MessageItem) = Completable.concatArray(

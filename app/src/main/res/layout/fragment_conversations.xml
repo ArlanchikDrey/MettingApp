@@ -12,13 +12,13 @@
 
 	</data>
 
-
 	<FrameLayout
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		android:background="@color/colorBackground">
 
-		<androidx.recyclerview.widget.RecyclerView android:id="@+id/rvConversationList"
+		<androidx.recyclerview.widget.RecyclerView
+			android:id="@+id/rvConversationList"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
 			android:clipToPadding="false"
@@ -36,7 +36,8 @@
 			tools:listitem="@layout/item_conversation"
 			/>
 
-		<com.google.android.material.textview.MaterialTextView android:id="@+id/tvConversationsHelperText"
+		<com.google.android.material.textview.MaterialTextView
+			android:id="@+id/tvConversationsHelperText"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_gravity="center"
@@ -44,7 +45,7 @@
 			android:text="@string/fragment_conversations_explanation_text"
 			android:textAlignment="center"
 			android:textAppearance="?textAppearanceHeadline5"
-			
+
 			app:invisibleIf='@{!viewModel.showTextHelper}'
 			/>
 

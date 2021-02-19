@@ -60,6 +60,7 @@ class ConversationsAdapter(
 		data.clear()
 		data.addAll(newData)
 		notifyDataSetChanged()
+		//notifyItemRangeChanged(0,data.size - 1)
 	}
 	
 	fun insertPreviousData(topData: List<ConversationItem>) {

@@ -74,6 +74,8 @@ dependencies {
 
     //custom UI
     implementation('com.github.chrisbanes:PhotoView:2.3.0')
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
+
 
     //firebase
     implementation platform('com.google.firebase:firebase-bom:26.2.0')
