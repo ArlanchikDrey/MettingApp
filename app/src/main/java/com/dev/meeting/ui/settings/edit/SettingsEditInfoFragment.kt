@@ -3,13 +3,14 @@ package com.dev.meeting.ui.settings.edit
 
 import android.os.Bundle
 import android.view.View
+import android.view.View.OnTouchListener
 import androidx.core.widget.doAfterTextChanged
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.dev.domain.user.data.Gender
-import com.dev.domain.user.data.Gender.*
+import com.dev.domain.user.data.Gender.FEMALE
+import com.dev.domain.user.data.Gender.MALE
 import com.dev.meeting.R
 import com.dev.meeting.databinding.FragmentSettingsEditInfoBinding
 import com.dev.meeting.ui.MainActivity
@@ -18,7 +19,9 @@ import com.dev.meeting.ui.common.custom.GridItemDecoration
 import com.dev.meeting.ui.settings.SettingsViewModel
 import com.dev.meeting.utils.extensions.hideKeyboard
 import com.dev.meeting.utils.extensions.showToastText
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
+
 
 /**
  * This fragment allow you to edit your profile
@@ -52,7 +55,16 @@ class SettingsEditInfoFragment: BaseFragment<SettingsViewModel, FragmentSettings
 			v.hideKeyboard(binding.edSettingsEditDescription)
 			return@setOnTouchListener true
 		}
-		
+
+		nsScrollSettingEdit.run {
+			setOnTouchListener { v, event ->
+				// Setting on Touch Listener for handling the touch inside ScrollView
+				// Disallow the touch request for parent scroll on touch of child view
+				v.parent.requestDisallowInterceptTouchEvent(true)
+				false
+			}
+		}
+
 		rvSettingsEditPhotos.run {
 			
 			layoutManager = GridLayoutManager(context, 2, GridLayoutManager.VERTICAL, false)
