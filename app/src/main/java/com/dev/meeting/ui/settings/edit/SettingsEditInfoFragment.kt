@@ -7,17 +7,21 @@ import android.view.View.OnTouchListener
 import androidx.core.widget.doAfterTextChanged
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
+import com.dev.domain.user.UserState
 import com.dev.domain.user.data.Gender
 import com.dev.domain.user.data.Gender.FEMALE
 import com.dev.domain.user.data.Gender.MALE
 import com.dev.meeting.R
+import com.dev.meeting.core.log.logDebug
 import com.dev.meeting.databinding.FragmentSettingsEditInfoBinding
 import com.dev.meeting.ui.MainActivity
 import com.dev.meeting.ui.common.base.BaseFragment
 import com.dev.meeting.ui.common.custom.GridItemDecoration
 import com.dev.meeting.ui.settings.SettingsViewModel
 import com.dev.meeting.utils.extensions.hideKeyboard
+import com.dev.meeting.utils.extensions.observeOnce
 import com.dev.meeting.utils.extensions.showToastText
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
@@ -118,6 +122,7 @@ class SettingsEditInfoFragment: BaseFragment<SettingsViewModel, FragmentSettings
 		changerNameSetup()
 		changerAgeSetup()
 		changerDescriptionSetup()
+		listenDeletingAccount()
 
 	}
 
@@ -162,10 +167,22 @@ class SettingsEditInfoFragment: BaseFragment<SettingsViewModel, FragmentSettings
 	private fun showDialogDeleteAttention() = MaterialAlertDialogBuilder(requireContext())
 		.setTitle(R.string.dialog_profile_delete_title)
 		.setMessage(R.string.dialog_profile_delete_message)
-		.setPositiveButton(R.string.dialog_delete_btn_positive_text) { _, _ -> mViewModel.deleteMyAccount() }
+		.setPositiveButton(R.string.dialog_delete_btn_positive_text) { _, _ ->
+			mViewModel.deleteMyAccount()
+		}
 		.setNegativeButton(R.string.dialog_delete_btn_negative_text, null)
 		.create()
 		.show()
+
+	private fun listenDeletingAccount(){
+		mViewModel.selfDeletingStatus.observe(this, Observer<SettingsViewModel
+		.DeletingStatus> {
+			if(it == SettingsViewModel.DeletingStatus.COMPLETED){
+				sharedViewModel.userState.value = UserState.UNREGISTERED(initialUserInfo
+				= MainActivity.currentUser!!)
+			}
+		})
+	}
 
 	override fun onBackPressed() {
 		super.onBackPressed()
