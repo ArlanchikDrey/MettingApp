@@ -62,12 +62,12 @@
 
 			android:text="@string/btn_log_in_with_google"
 			android:textAllCaps="false"
-			android:textColor="@color/white"
+			android:textColor="@color/black"
 
-			app:backgroundTint="@color/myFacebookColor"
+			app:backgroundTint="@color/colorOnBackground"
 			app:cornerRadius="8dp"
 			app:iconTint="@color/white"
-			app:rippleColor="@color/myFacebookColor"
+			app:rippleColor="@color/colorOnBackground"
 
 			app:layout_constraintBottom_toBottomOf="parent"
 			app:layout_constraintStart_toStartOf="parent"
