@@ -42,36 +42,21 @@ class AuthLandingFragment: BaseFragment<AuthViewModel, FragmentAuthLandingBindin
 	}
 
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) = binding.run {
-//		btnFacebookLogin.fragment = this@AuthLandingFragment
-//		btnFacebookLogin.registerCallback(mCallbackManager, object: FacebookCallback<LoginResult> {
-//
-//			override fun onSuccess(loginResult: LoginResult) {
-//				mViewModel.signIn(loginResult.accessToken.token)
-//			}
-//
-//			override fun onCancel() {}
-//
-//			override fun onError(error: FacebookException) {
-//				view.context.showToastText("$error")
-//			}
-//		})
 		btnFacebookLoginDelegate.setOnClickListener {
 			sharedViewModel.logOut()
 			startActivityForResult(googleSignInClient.signInIntent, Ints.RC_SIGN_IN)
 		}
-//
-//		tvOpenPolicies.setOnClickListener {
-//			var url = getString(R.string.privacy_policy_url)
-//			if (!url.startsWith("http://") && !url.startsWith("https://"))
-//				url = "http://$url"
-//			val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-//			startActivity(browserIntent)
-//		}
+		tvOpenPolicies.setOnClickListener {
+			var url = getString(R.string.privacy_policy_url)
+			if (!url.startsWith("http://") && !url.startsWith("https://"))
+				url = "http://$url"
+			val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+			startActivity(browserIntent)
+		}
 	}
 
 	override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
 		super.onActivityResult(requestCode, resultCode, data)
-//		mCallbackManager.onActivityResult(requestCode, resultCode, data)
 		if (requestCode == Ints.RC_SIGN_IN) {
 			val task = GoogleSignIn.getSignedInAccountFromIntent(data)
 			try {

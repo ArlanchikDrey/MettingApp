@@ -6,7 +6,7 @@
 	<!--General-->
 	<string name="app_logo" translatable="false">App Logo</string>
 	<string name="app_name" translatable="false">TROLD</string>
-	<string name="privacy_policy_url" translatable="false">https://roove.flycricket.io/privacy.html</string>
+	<string name="privacy_policy_url" translatable="false">https://github.com/ArlanchikDrey/MettingApp/blob/main/politick.md</string>
 	
 	<!--Default strings-->
 	<string name="default_name" translatable="false">John Doe</string>
